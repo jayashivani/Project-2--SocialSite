@@ -1,0 +1,18 @@
+
+<html xmlns:wicket>
+    <wicket:head>
+    </wicket:head>
+    <wicket:panel>
+        <div>
+            <a class="addAsFriend minibutton" href="#"><span>Add as a Friend</span></a>
+            <div class="addAsFriendContainer">
+                <form wicket:id="addasfriendform" action="#">
+                    <input wicket:id="message" type="text" /><a class="minibutton " wicket:id="send" href="#"><span>send</span></a>
+                    <a class="cancel minibutton danger" href="#"><span>cancel</span></a>
+                </form>
+            </div>
+            <div wicket:id="feedback">
+            </div>
+        </div>
+    </wicket:panel>
+</html>

@@ -1,0 +1,28 @@
+
+<html xmlns:wicket>
+    <wicket:panel>
+    	<div wicket:id="feedback"></div>
+        <div>
+        	<form wicket:id="form">
+            <p>
+                <label for="name">
+                    Course Name
+                </label>
+                <br/>
+                <input class="text" type="text" wicket:id="name" id="name" />
+            </p>
+            <p>
+                <label for="description">
+                    Description
+                </label>
+                <br/>
+                <input class="text" type="text" wicket:id="description" id="description" />
+            </p>
+			<p>
+				<a wicket:id="create" class="minibutton"><span>Create</span></a>
+			</p>
+			</form>
+        </div>
+		
+    </wicket:panel>
+</html>

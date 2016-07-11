@@ -1,0 +1,31 @@
+
+<html xmlns:wicket>
+    <wicket:panel>
+        <div class="line">
+            <div wicket:id="courses" class="unit size1of3">
+                <div class="line marBottom">
+                    <div class="unit size1of2">
+                        <a wicket:id="courseimagelink" href="#"><span wicket:id="image"></span></a>
+                    </div>
+                    <div class="unit size1of2">
+                        <ul>
+                            <li>
+                                <a wicket:id="courselink"><span wicket:id="coursename">[name]</span></a>
+                            </li>
+                            <li>
+                                <span wicket:id="questions" ></span> Questions
+                            </li>
+                            <li>
+                                <span wicket:id="students"></span> Students
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+            <div wicket:id="paging">
+            </div>
+        </div>
+    </wicket:panel>
+</html>

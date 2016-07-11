@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.socialsite.persistence">
+	<class name="Comment" table="COMMENT">
+		<!-- id -->
+		<id name="id" type="long">
+			<generator class="identity"></generator>
+		</id>
+		<!-- properties -->
+		<property name="time" type="timestamp" />
+		<property name="text" type="text" />
+
+		<!--  relations -->
+		<many-to-one name="answer" column="answer_id" class="Answer"
+			foreign-key="fk_Comment_answer_id_Answer_id" />
+		<many-to-one name="user" column="user_id" class="User"
+			foreign-key="fk_Comment_user_id_User_id" />
+	</class>
+</hibernate-mapping>

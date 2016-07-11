@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.socialsite.persistence">
+	<class name="Activation" table="ACTIVATION">
+		<!-- id -->
+		<id name="id" type="long">
+			<generator class="identity">
+			</generator>
+		</id>
+		<!-- properties -->
+		<property name="universityName" type="string" />
+		<!--  relations -->
+		<many-to-one name="admin" class="Admin" column="admin_id"
+			foreign-key="fk_Activation_admin_id_Admin_id" />
+	</class>
+</hibernate-mapping>

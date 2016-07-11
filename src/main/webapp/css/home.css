@@ -1,0 +1,83 @@
+
+ @CHARSET "ISO-8859-1";
+
+/*------------- user info ------------------*/
+.userInfo {
+	padding: 1px;
+}
+
+.userInfo .wrap {
+	width: 962px;
+}
+
+.userInfo .box {
+	position: relative;
+	margin-top: 15px;
+	padding: 10px;
+}
+
+.userInfo .boxBottom {
+	height: 6px;
+	margin-bottom: 5px;
+}
+
+.userInfo img {
+	float: left;
+	margin-right: 10px;
+}
+
+.userInfo .info {
+	float: left;
+}
+
+li.feedbackPanelINFO {
+	background: #FFE5F4;
+	border: 1px solid #FBC2C4;
+	color: #8A1F11;
+	margin: 0 0 0 -10px;
+	border-top: 0;
+}
+
+div.friend {
+	background: #EEE;
+	width: 101px;
+	padding: 2px;
+	float: left;
+	overflow: hidden;
+	text-align: center;
+}
+
+.friend img {
+	margin: 11px 0 0 0;
+}
+
+/** info message **/
+.message {
+	margin-bottom:10px;
+}
+
+.message a.userImage {
+	float: left;
+	margin-right: 13px;
+}
+
+.message .action a {
+	float :right;
+	margin-right:10px;
+} 
+
+/*-------------- messages-------------------*/
+#content .wrap {
+	margin-top: 10px;
+}
+
+.messageContainer {
+	margin-top: 10px;
+}
+
+#main {
+	float: left;
+	border-right: 2px solid black;
+	padding-right:3px;
+	width: 620px;
+}

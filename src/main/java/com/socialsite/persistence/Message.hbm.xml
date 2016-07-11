@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.socialsite.persistence">
+	<class name="Message" table="MESSAGE" abstract="true">
+		<!-- id -->
+		<id name="id" type="long" column="id">
+			<generator class="identity"></generator>
+		</id>
+
+		<!-- properties -->
+		<property name="time" type="timestamp" />
+
+		<!-- relations -->
+		<set name="users" table="message_user" >
+			<key column="message_id" foreign-key="message_user_message_id_Message_id"
+				not-null="true" />
+			<many-to-many class="User" column="user_id"
+				foreign-key="message_user_user_id_User_id" />
+		</set>
+
+		<!-- sublclasses -->
+
+		<joined-subclass name="FriendRequestMsg" table="FRIEND_REQUEST_MSG">
+			<key column="id"></key>
+			<!-- properties -->
+			<property name="message" type="string" />
+			<!-- relations -->
+			<many-to-one name="sender" column="sender_id" class="User"
+				foreign-key="fk_FRIEND_REQUEST_MSG_sender_id_User_id" />
+
+		</joined-subclass>
+
+		<joined-subclass name="StaffRequestMsg" table="STAFF_REQUEST_MSG">
+			<key column="id"></key>
+			<!-- relations -->
+			<many-to-one name="sender" column="sender_id" class="Staff"
+				foreign-key="fk_STAFF_REQUEST_MSG_sender_id_Staff_id" />
+			<many-to-one name="university" column="university_id"
+				class="University" foreign-key="fk_STAFF_REQUEST_MSG_university_id_University_id" />
+		</joined-subclass>
+
+		<joined-subclass name="CourseJoinedMsg" table="COURSE_JOINED_MSG">
+			<key column="id"></key>
+			<!-- relations -->
+			<many-to-one name="sender" column="sender_id" class="User"
+				foreign-key="fk_COURSE_JOINED_MSG_sender_id_User_id" />
+			<many-to-one name="course" column="course_id" class="Course"
+				foreign-key="fk_COURSE_JOINED_MSG_course_id_Course_id" />
+		</joined-subclass>
+
+		<joined-subclass name="InfoMsg" table="INFO_MSG">
+			<key column="id"></key>
+			<!-- properties -->
+			<property name="message" type="text"></property>
+			<!-- relations -->
+			<many-to-one name="sender" column="sender_id" class="User"
+				foreign-key="fk_INFO_MSG_sender_id_User_id" />
+		</joined-subclass>
+
+		<joined-subclass name="CourseNoteMsg" table="COURSE_NOTE_MSG">
+			<key column="id" />
+			<!-- relations -->
+			<many-to-one name="note" column="note_id" class="Note"
+				foreign-key="fk_COURSE_NOTE_MSG_note_id_Note_id" />
+		</joined-subclass>
+
+		<joined-subclass name="QuestionInfoMsg" table="QUESTION_INFO_MSG">
+			<key column="id">
+			</key>
+			<!-- relations -->
+			<many-to-one name="question" column="question_id" class="Question"
+				foreign-key="fk_Question_QuestionInfoMsg_id_question_id" />
+		</joined-subclass>
+
+	</class>
+</hibernate-mapping>

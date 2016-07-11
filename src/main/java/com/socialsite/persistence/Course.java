@@ -1,0 +1,240 @@
+
+package com.socialsite.persistence;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+public class Course implements AbstractDomain
+{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private long id;
+
+	private String name;
+	private String description;
+	private byte[] image;
+	private byte[] thumb;
+
+	private University university;
+
+	private Staff staff;
+
+	private Set<Student> students = new HashSet<Student>();
+
+	private Date lastModified;
+
+	private Set<Question> questions = new HashSet<Question>();
+
+	private Set<Note> notes = new HashSet<Note>();
+
+	public Course()
+	{
+	}
+
+	public Course(final String name, final Staff staff)
+	{
+		setName(name);
+		setStaff(staff);
+		addUniversity(staff.getUniversity());
+		setLastModified(new Date());
+	}
+
+	public Course(final String name, final Staff staff, final University university)
+	{
+		setName(name);
+		setStaff(staff);
+		addUniversity(university);
+		setLastModified(new Date());
+	}
+
+	public void addQuestions(final Question question)
+	{
+		getQuestions().add(question);
+		question.setCourse(this);
+	}
+
+	public void addStudents(final Student student)
+	{
+		getStudents().add(student);
+		student.getCourses().add(this);
+	}
+
+	public void addUniversity(final University university)
+	{
+		setUniversity(university);
+		university.getCourses().add(this);
+	}
+
+	/**
+	 * changes the profile image
+	 * 
+	 * @param image
+	 *            image data in byte[]
+	 */
+	public void changeImage(final byte[] image)
+	{
+		this.image = image;
+		setLastModified(new Date());
+	}
+
+
+	/**
+	 * changes the thumb
+	 * 
+	 * @param thumb
+	 *            thumb data in byte[]
+	 */
+	public void changeThumb(final byte[] thumb)
+	{
+		this.thumb = thumb;
+		setLastModified(new Date());
+	}
+
+	@Override
+	public boolean equals(final Object obj)
+	{
+		if (this == obj)
+		{
+			return true;
+		}
+		if (obj == null)
+		{
+			return false;
+		}
+		if (getClass() != obj.getClass())
+		{
+			return false;
+		}
+		final Course other = (Course)obj;
+		if (id != other.id)
+		{
+			return false;
+		}
+		return true;
+	}
+
+	public long getId()
+	{
+		return id;
+	}
+
+	public byte[] getImage()
+	{
+		return image;
+	}
+
+	public Date getLastModified()
+	{
+		return lastModified;
+	}
+
+	public String getName()
+	{
+		return name;
+	}
+
+	public Set<Question> getQuestions()
+	{
+		return questions;
+	}
+
+	public Staff getStaff()
+	{
+		return staff;
+	}
+
+	public Set<Student> getStudents()
+	{
+		return students;
+	}
+
+	public byte[] getThumb()
+	{
+		return thumb;
+	}
+
+	public University getUniversity()
+	{
+		return university;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int)(id ^ id >>> 32);
+		return result;
+	}
+
+	public void setId(final long id)
+	{
+		this.id = id;
+	}
+
+	public void setImage(final byte[] image)
+	{
+		this.image = image;
+	}
+
+	public void setLastModified(final Date lastModified)
+	{
+		this.lastModified = lastModified;
+	}
+
+	public void setName(final String name)
+	{
+		this.name = name;
+	}
+
+	public void setQuestions(final Set<Question> questions)
+	{
+		this.questions = questions;
+	}
+
+	public void setStaff(final Staff staff)
+	{
+		this.staff = staff;
+	}
+
+	public void setStudents(final Set<Student> students)
+	{
+		this.students = students;
+	}
+
+	public void setThumb(final byte[] thumb)
+	{
+		this.thumb = thumb;
+	}
+
+	public void setUniversity(final University university)
+	{
+		this.university = university;
+	}
+
+	public String getDescription()
+	{
+		return description;
+	}
+
+	public void setDescription(String description)
+	{
+		this.description = description;
+	}
+
+	public void setNotes(Set<Note> notes)
+	{
+		this.notes = notes;
+	}
+
+	public Set<Note> getNotes()
+	{
+		return notes;
+	}
+
+
+}

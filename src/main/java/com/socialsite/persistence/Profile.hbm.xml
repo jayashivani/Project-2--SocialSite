@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.socialsite.persistence">
+	<class name="Profile">
+
+		<!-- id  -->
+
+		<id name="id" type="long" column="user_id">
+			<generator class="foreign">
+				<param name="property">user</param>
+			</generator>
+		</id>
+
+		<!-- property -->
+		<property name="firstName" type="string" />
+		<property name="lastName" type="string" />
+		<property name="email" type="string" />
+		<property name="sex" type="string" />
+		<property name="currentCity" type="com.socialsite.util.PrivacyUserType">
+			<column name="currentCity_value"></column>
+			<column name="currentCity_privacy"></column>
+		</property>
+		<property name="homeTown" type="com.socialsite.util.PrivacyUserType">
+			<column name="homeTown_value"></column>
+			<column name="homeTown_privacy"></column>
+		</property>
+		<property name="relationshipStatus" type="string" />
+		<property name="politicalView" type="text" />
+		<property name="religiousView" type="text" />
+		<property name="activities" type="text" />
+		<property name="interests" type="text" />
+		<property name="favouriteMusic" type="text" />
+		<property name="favouriteMovies" type="text" />
+		<property name="favouriteTvShows" type="text" />
+		<property name="favouriteQuotations" type="text" />
+		<property name="favouriteBooks" type="text" />
+		<property name="aboutMe" type="text" />
+		<property name="mobilePhone" type="com.socialsite.util.PrivacyUserType">
+			<column name="mobilePhone_value"></column>
+			<column name="mobilePhone_privacy"></column>
+		</property>
+		<property name="landPhone" type="com.socialsite.util.PrivacyUserType">
+			<column name="landPhone_value"></column>
+			<column name="landPhone_privacy"></column>
+		</property>
+		<property name="address" type="com.socialsite.util.PrivacyUserType">
+			<column name="address_value"></column>
+			<column name="address_privacy"></column>
+		</property>
+		<property name="city" type="string" />
+		<property name="neighborhood" type="string" />
+		<property name="zip" type="integer" />
+		<property name="website" type="string" />
+		<property name="college" type="string" />
+		<property name="image" type="binary" length="10000000" />
+		<property name="thumb" type="binary" length="100000" />
+
+
+
+
+		<!-- Relations -->
+		<one-to-one name="user" class="com.socialsite.persistence.User"
+			constrained="true" foreign-key="fk_Profile_user_id_User_id" />
+
+	</class>
+</hibernate-mapping>

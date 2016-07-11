@@ -1,0 +1,77 @@
+
+
+/**  very light E1E6FA
+     light C4D7ED
+	 medium ABC8E2
+	 dark  375D81
+	 very dark 183152
+	 
+	 header #3B5998
+ */
+
+ 
+.mod.login {
+   background:#E1E6FA;
+   width:350px;
+   margin-top:100px;
+} 
+ 
+.mod.signup {
+  background:#E1E6FA;
+  margin-top:100px;
+} 
+ 
+.header {
+	background: #3B5998;
+} 
+.mod.header { 
+    background: #3B5998;
+	height: 36px; 
+	margin : 0 auto;
+	width : 960px;
+} 
+.mod.header a { 
+	color : #FFF;
+	display : inline-block;
+	display:inline-block;
+	height:22px;
+	padding:10px 10px 4px;
+	text-decoration:none;
+	font-weight : normal;
+	font-size: 16px;
+}
+.mod.header a:hover { background-color: #6D86b7 ;} 
+.mod.header ul { padding:0px;}
+
+.mod.header .search {
+  margin-top : -14px;
+}
+
+.mod.header .search  a:hover{
+  text-decoration : underline;
+  background : #3B5998;
+}
+
+.user_course_border{
+	border : 2px solid #C4D7ED;
+	padding: 10px;
+}
+
+
+/*** messages  **/
+
+.lol a , .lol a span { color : #183152 }
+
+
+/***  right side bar boxes ***/
+
+.box { background-color : #E1E6FA}
+
+/*** profile image ***/
+a.profileImg {
+	background:#3B5998;
+	color:#FFFFFF;
+	float:left;
+	margin-left:-100px;
+	display: none;
+}

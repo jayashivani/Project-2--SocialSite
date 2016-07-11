@@ -1,0 +1,4 @@
+
+.hMenu  li{ display:inline;}
+.hMenu a{ display:inline-block;}
+div.hMenu  { vertical-align : center;}

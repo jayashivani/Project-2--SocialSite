@@ -1,0 +1,79 @@
+
+
+.content {
+	float: left;
+	width: 576px
+}
+
+.wrap {
+	margin: 0 auto;
+	width: 960px;
+}
+
+.clear {
+	border: 0 none;
+	clear: both;
+	display: block;
+	float: none;
+	font-size: 0;
+	height: 0;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	visibility: hidden;
+	width: 0;
+}
+
+/**--------- busy indicator -----------**/
+#busy_indicator  {
+	position: fixed;
+	right: 50%;
+	background: #DDD;
+	color: #333;
+	padding: 2px;
+	margin: 0 auto;
+	z-index: 1000;
+	width: 200;
+	font-weight: bold;
+	text-align: center;
+	font-size: 1em;
+	padding: 2px;
+}
+ 
+#message {
+	position: fixed;
+	right: 50%;
+	background: #FBEE99;
+	color: #333;
+	padding: 2px;
+	margin: 0 auto;
+	z-index: 1000;
+	width: 200;
+	font-weight: bold;
+	text-align: center;
+	font-size: 1em;
+	padding: 2px;
+}
+
+/**---------------------- Question -----------------------**/
+
+.addQuestion , .addAnswer , .addComment {
+	/** avoids the flickering problem in FF  */
+	overflow:hidden;
+}
+ 
+/** helpers**/
+.right {
+	float:right;
+}
+.left {
+	float:left;
+} 
+
+
+.send {
+	margin-top:3px;
+}

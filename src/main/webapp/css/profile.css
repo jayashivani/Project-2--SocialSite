@@ -1,0 +1,46 @@
+
+ @CHARSET "ISO-8859-1";
+
+div.tabpanel div.tab-row {
+	margin-bottom : 15px;
+}
+
+div.tabpanel div.tab-row ul {
+	padding:10px 0 0;
+	border-bottom: 1px solid #DDD;
+}
+
+div.tabpanel div.tab-row li {
+	display: inline;
+}
+
+div.tabpanel div.tab-row a {
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border: 1px solid #DDDDDD;
+	display: inline-block;
+	font-size: 14px;
+	padding: 8px 15px 5px;
+	position: relative;
+	text-decoration: none;
+	top: 1px;
+	color: #333333;
+	background: #F5F5F5;
+	border: 1px solid #DDDDDD;
+	-webkit-border-top-right-radius: 5px;
+}
+
+div.tabpanel div.tab-row a:hover {
+	
+}
+
+div.tabpanel div.tab-row li.selected {
+	
+}
+
+div.tabpanel div.tab-row li.selected a {
+	background: #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
+}

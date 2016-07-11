@@ -1,0 +1,121 @@
+
+package com.socialsite.course;
+
+import java.util.Date;
+import java.util.HashSet;
+
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.RequiredTextField;
+import org.apache.wicket.markup.html.form.SubmitLink;
+import org.apache.wicket.markup.html.form.upload.FileUpload;
+import org.apache.wicket.markup.html.form.upload.FileUploadField;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
+
+import com.socialsite.BasePanel;
+import com.socialsite.dao.CourseDao;
+import com.socialsite.dao.MessageDao;
+import com.socialsite.dao.NoteDao;
+import com.socialsite.persistence.Course;
+import com.socialsite.persistence.CourseNoteMsg;
+import com.socialsite.persistence.Message;
+import com.socialsite.persistence.Note;
+import com.socialsite.persistence.Staff;
+import com.socialsite.persistence.User;
+
+/**
+ * @author Ananth
+ */
+public class AddNotePanel extends BasePanel
+{
+
+	private FileUploadField fileUploadField;
+	private String description;
+
+	/** feedback panel */
+	FeedbackPanel feedback;
+
+	private final Course course;
+	@SpringBean(name = "noteDao")
+	NoteDao noteDao;
+
+	@SpringBean(name = "messageDao")
+	MessageDao<Message> messageDao;
+
+	@SpringBean(name = "courseDao")
+	CourseDao courseDao;
+
+	public AddNotePanel(String id, final IModel<Course> model)
+	{
+		super(id);
+		this.course = model.getObject();
+		Form<Void> form = new Form<Void>("form");
+		add(form);
+		form.add(fileUploadField = new FileUploadField("file"));
+		form.add(new RequiredTextField<String>("description", new PropertyModel<String>(this,
+				"description")));
+		form.add(new SubmitLink("submit")
+		{
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void onSubmit()
+			{
+				final FileUpload upload = fileUploadField.getFileUpload();
+				if (upload == null || upload.getSize() == 0)
+				{
+					error("upload a file");
+				}
+				else if (upload.getSize() > 1024 * 1024)
+				{
+					// TODO change this to 10MB
+					error("file size too large");
+				}
+				else
+				{
+					final Course course = courseDao.load(model.getObject().getId());
+					Note note = new Note();
+					note.setCourse(course);
+					note.setTime(new Date());
+					note.setDescription(description);
+					note.setFileName(upload.getClientFileName());
+					note.setData(upload.getBytes());
+					note.setContentType(upload.getContentType());
+					noteDao.save(note);
+
+					CourseNoteMsg noteMsg = new CourseNoteMsg();
+					noteMsg.setTime(new Date());
+					noteMsg.setNote(note);
+					noteMsg.setUsers(new HashSet<User>(course.getStudents()));
+
+					messageDao.save(noteMsg);
+
+				}
+			}
+		});
+
+		add(feedback = new FeedbackPanel("feedback"));
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public boolean isVisible()
+	{
+		User user = getSessionUser();
+		if (user instanceof Staff)
+		{
+			return ((Staff)user).getCourses().contains(course);
+		}
+		return false;
+	}
+
+}
